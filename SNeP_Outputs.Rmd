@@ -1,0 +1,39 @@
+---
+title: "SNeP_Outputs"
+author: "Stephanie"
+date: "7/14/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+```{r}
+ne <- read.csv("./All_SNeP_Outputs_Original.csv")
+ne_hwe <- read.csv("./All_SNeP_Outputs_HWE.csv")
+
+pdf("./ne_plot.pdf")
+
+ne_plot <- ggplot(data=ne, aes(x=GenAgo, y=Ne, group=Study)) +
+  geom_line(aes(color=Study))+
+  geom_point(aes(color=Study))
+
+ne_plot
+
+dev.off()
+
+pdf("./ne_hwe_plot.pdf")
+
+ne_hwe_plot <- ggplot(data=ne_hwe, aes(x=GenAgo, y=Ne, group=Study)) +
+  geom_line(aes(color=Study))+
+  geom_point(aes(color=Study))
+
+ne_hwe_plot
+
+dev.off()
+
+
+```
+
